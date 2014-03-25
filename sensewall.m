@@ -1,5 +1,5 @@
 % Main script for making the robot navigate around walls/objects
-
+wb_robot_step(64);
 while 1
     
     % get the sensor values
@@ -9,11 +9,12 @@ while 1
     left_sum = sum(sensor_values(1:2));
     right_sum = sum(sensor_values(5:6));
     back_sum = sum(sensor_values(7:8));
-  
+    
     % move forward until the distance from the front sensors is 900
     % NOTE threshold may need adjusted
     while front_sum < 900
-        
+
+  
         % keep recalculating and displaying the sensor values
         sensor_values = readsensor()
         
