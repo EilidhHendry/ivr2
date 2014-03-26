@@ -35,7 +35,15 @@ while wb_robot_step(TIME_STEP) ~= -1
     end
     
     while front_sum > 1
-        
+        if left_sum > right_sum
+
+        wb_differential_wheels_set_speed(2, -2)
+
+    elseif right_sum > left_sum
+
+        wb_differential_wheels_set_speed(-2, 2)
+
+    end
     end
     
 
