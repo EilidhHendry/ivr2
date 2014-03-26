@@ -11,26 +11,36 @@ K = 0.001;
 while wb_robot_step(TIME_STEP) ~= -1
 
     sensor_values = readsensor();
-    sensor1_value = sensor_values(1);
-    sensor3_value = sensor_values(3);
-    sensor4_value = sesor_values(4)
-    sensor6_value = sensor_values(6);
+    front_sum = sum(sensor_values(3:4));
+    left_sum = sum(sensor_values(1:3));
+    right_sum = sum(sensor_values(4:6));
+    back_sum = sum(sensor_values(7:8));
+  
     
-    X = K*(sensor1_value - ERROR_DISTANCE)
-    left_speed = 4; 
-    right_speed = 4 - X;
-    wb_differential_wheels_set_speed(left_speed,right_speed);
-    wb_robot_step(TIME_STEP);
-    [x, y, phi] = odometry( x, y, phi, left_speed, right_speed )
-    
-   if sensor3_value > 0 && sensor4_value > 0
-       x = phi
-       while phi < x + pi
-           wb_differential_wheels_set_speed(2,-2);
+    while front_sum < 1 
+        X = K*(left_sum - ERROR_DISTANCE)
+        left_speed = 4; 
+        right_speed = 4 - X;
+        wb_differential_wheels_set_speed(left_speed,right_speed);
+        wb_robot_step(TIME_STEP);
+        [x, y, phi] = odometry( x, y, phi, left_speed, right_speed )
+
+       if sensor3_value > 0 && sensor4_value > 0
+           x = phi
+           while phi < x + pi
+               [x, y, phi] = odometry( x, y, phi, left_speed, right_speed)
+               wb_differential_wheels_set_speed(2,-2);
+           end
        end
-   end
-   
-   if phi > 
+    end
+    
+    while front_sum > 1
+        
+    end
+    
+
+
+
 end
 
 
