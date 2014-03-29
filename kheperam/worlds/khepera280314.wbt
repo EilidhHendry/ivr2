@@ -9,8 +9,8 @@ WorldInfo {
   runRealTime TRUE
 }
 Viewpoint {
-  orientation -0.534533 -0.607712 -0.587334 2.32842
-  position 0.07459 2.22559 -0.212321
+  orientation -0.59518 -0.571124 -0.565312 2.26253
+  position 0.227993 2.03849 -0.154811
 }
 PointLight {
   ambientIntensity 0.5
@@ -43,14 +43,14 @@ DEF ground Solid {
         }
       }
       geometry DEF PLANE Plane {
-        size 1 0.88
+        size 0.6 0.6
       }
     }
   ]
   boundingObject USE PLANE
 }
 DEF short_rock_1 Solid {
-  translation -0.25 0.01 0.04
+  translation -0.075623 0.01 0.0114383
   children [
     Shape {
       appearance Appearance {
@@ -64,7 +64,7 @@ DEF short_rock_1 Solid {
         }
       }
       geometry DEF short_brick_1_geometry Box {
-        size 0.08 0.02 0.08
+        size 0.425 0.02 0.25
       }
     }
   ]
@@ -72,7 +72,7 @@ DEF short_rock_1 Solid {
   boundingObject USE short_brick_1_geometry
 }
 DEF short_rock_h Solid {
-  translation -0.395112 0.01 0.0709879
+  translation 0.13528 0.01 0.0423866
   children [
     Shape {
       appearance Appearance {
@@ -94,7 +94,7 @@ DEF short_rock_h Solid {
   boundingObject USE short_brick_1_geometry
 }
 DEF short_rock_h Solid {
-  translation -0.48 0.01 -0.04
+  translation 0.271262 0.01 -0.10841
   children [
     Shape {
       appearance Appearance {
@@ -115,8 +115,9 @@ DEF short_rock_h Solid {
   name "short brick"
   boundingObject USE short_brick_1_geometry
 }
-DEF short_rock_1 Solid {
-  translation 0.4449 0.01 0.103701
+DEF short_rock_h Solid {
+  translation -0.0284935 0.01 0.150869
+  rotation 0 1 0 1.5708
   children [
     Shape {
       appearance Appearance {
@@ -130,15 +131,16 @@ DEF short_rock_1 Solid {
         }
       }
       geometry DEF short_brick_1_geometry Box {
-        size 0.08 0.02 0.08
+        size 0.04 0.02 0.08
       }
     }
   ]
   name "short brick"
   boundingObject USE short_brick_1_geometry
 }
-DEF short_rock_1 Solid {
-  translation 0.0431253 0.01 0.373804
+DEF short_rock_h Solid {
+  translation 0.0193898 0.01 -0.262368
+  rotation 0 1 0 1.5708
   children [
     Shape {
       appearance Appearance {
@@ -152,7 +154,7 @@ DEF short_rock_1 Solid {
         }
       }
       geometry DEF short_brick_1_geometry Box {
-        size 0.08 0.02 0.08
+        size 0.04 0.02 0.08
       }
     }
   ]
@@ -160,7 +162,7 @@ DEF short_rock_1 Solid {
   boundingObject USE short_brick_1_geometry
 }
 Solid {
-  translation 0.491202 0.01 0.0160644
+  translation 0.29 0.01 0
   children [
     DEF WALL_SHAPE Shape {
       appearance DEF WALL_APPEARANCE Appearance {
@@ -169,46 +171,21 @@ Solid {
         }
       }
       geometry Box {
-        size 0.02 0.02 0.9
+        size 0.02 0.02 0.6
       }
     }
   ]
   boundingObject USE WALL_SHAPE
 }
 Solid {
-  translation -0.493274 0.01 0.00595862
+  translation -0.29 0.01 0
   children [
-    DEF WALL_SHAPE Shape {
-      appearance DEF WALL_APPEARANCE Appearance {
-        material Material {
-          diffuseColor 1 0.501961 0.25098
-        }
-      }
-      geometry Box {
-        size 0.02 0.02 0.9
-      }
-    }
+    USE WALL_SHAPE
   ]
   boundingObject USE WALL_SHAPE
 }
 Solid {
-  translation 0.293196 0.01 -0.00499386
-  children [
-    DEF WALL_SHAPE Shape {
-      appearance DEF WALL_APPEARANCE Appearance {
-        material Material {
-          diffuseColor 1 0.501961 0.25098
-        }
-      }
-      geometry Box {
-        size 0.02 0.02 0.4
-      }
-    }
-  ]
-  boundingObject USE WALL_SHAPE
-}
-Solid {
-  translation -0.0114301 0.01 0.431041
+  translation 0 0.01 0.29
   rotation 0 1 0 1.5708
   children [
     DEF WALL_SHAPE_L Shape {
@@ -218,66 +195,23 @@ Solid {
         }
       }
       geometry Box {
-        size 0.02 0.02 1
+        size 0.02 0.02 0.6
       }
     }
   ]
   boundingObject USE WALL_SHAPE_L
 }
 Solid {
-  translation 0.00119351 0.01 -0.427515
+  translation 0 0.01 -0.29
   rotation 0 1 0 1.5708
   children [
-    DEF WALL_SHAPE_L Shape {
-      appearance DEF WALL_APPEARANCE Appearance {
-        material Material {
-          diffuseColor 1 0.501961 0.25098
-        }
-      }
-      geometry Box {
-        size 0.02 0.02 1
-      }
-    }
-  ]
-  boundingObject USE WALL_SHAPE_L
-}
-Solid {
-  translation -0.102336 0.01 -0.191346
-  rotation 0 1 0 1.5708
-  children [
-    DEF WALL_SHAPE_L Shape {
-      appearance DEF WALL_APPEARANCE Appearance {
-        material Material {
-          diffuseColor 1 0.501961 0.25098
-        }
-      }
-      geometry Box {
-        size 0.02 0.02 0.8
-      }
-    }
-  ]
-  boundingObject USE WALL_SHAPE_L
-}
-Solid {
-  translation -0.10342 0.01 0.181466
-  rotation 0 1 0 1.5708
-  children [
-    DEF WALL_SHAPE_L Shape {
-      appearance DEF WALL_APPEARANCE Appearance {
-        material Material {
-          diffuseColor 1 0.501961 0.25098
-        }
-      }
-      geometry Box {
-        size 0.02 0.02 0.8
-      }
-    }
+    USE WALL_SHAPE_L
   ]
   boundingObject USE WALL_SHAPE_L
 }
 DEF KHEPERA DifferentialWheels {
-  translation -0.447239 0 -0.349612
-  rotation 0 1 0 4.71239
+  translation 0.198397 0 0.210065
+  rotation 0 1 0 2.12179
   children [
     Pen {
     }
