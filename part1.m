@@ -1,7 +1,7 @@
 TIME_STEP = 64;
 ERROR_DISTANCE = 300;
 DEFAULT_SPEED = 3;
-K = 0.0001;
+K = 0.00001;
 
 while wb_robot_step(TIME_STEP) ~= -1
     

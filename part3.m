@@ -8,7 +8,7 @@ while wb_robot_step(TIME_STEP) ~= -1
     right_sum = sum(sensor_values(4:6));
     back_sum = sum(sensor_values(7:8));
     
-    while front_sum < 999
+    while front_sum < 1000
         
         sensor_values = readsensor();
         front_sum = sum(sensor_values(3:4));

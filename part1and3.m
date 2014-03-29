@@ -1,8 +1,8 @@
 % Main script for making the robot navigate around walls/objects
 TIME_STEP = 64;
-ERROR_DISTANCE = 300;
+ERROR_DISTANCE = 400;
 DEFAULT_SPEED = 3;
-K = 0.0001;
+K = 0.001;
 
 
 while wb_robot_step(TIME_STEP) ~= -1
@@ -26,21 +26,23 @@ while wb_robot_step(TIME_STEP) ~= -1
         wb_differential_wheels_set_speed(left_speed,right_speed);
         wb_robot_step(TIME_STEP);
             
-        if ((sensor_values(2) > 800) && (front_sum == 0) && (back_sum < 1000)) || ((sensor_values(6) > 800) && (front_sum == 0) && (back_sum < 1000)) || (left_sum > 1900) || (right_sum > 1900)
-             sensor_values
-             break;
-        end
-      
-        if (sensor_values(1) > 800) && (sensor_values(2) == 0)    
+%         if sensor_values(2) > 800 | sensor_values(5) > 800
+%             break;
+%         end
+        
+        if (sensor_values(1) > 850) && (sensor_values(2) == 0)   
             %Turn left
-            break;
             wb_differential_wheels_set_speed(-2, 2)
         end
         
-        if (sensor_values(6) > 800) && (sensor_values(5) == 0) 
+        if (sensor_values(6) > 850) && (sensor_values(5) == 0) 
             %Turn right
-            break;
             wb_differential_wheels_set_speed(-2, 2)
+        end
+                
+        if ((left_sum > 1750) && (front_sum == 0) && (back_sum < 1000)) || ((right_sum > 1750) && (front_sum == 0) && (back_sum < 1000)) % || (left_sum > 1950) || (right_sum > 1950)
+             sensor_values
+             break;
         end
      end
     
