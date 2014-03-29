@@ -10,17 +10,17 @@ while wb_robot_step(TIME_STEP) ~= -1
     sensor_values = readsensor();
     front_sum = sum(sensor_values(3:4));
     
-    while front_sum < 900
+    while front_sum < 1000
         
         sensor_values = readsensor();
         front_sum = sum(sensor_values(3:4));
-        left_sum = sum(sensor_values(1:2));
-        right_sum = sum(sensor_values(5:6));
+        left_sum = sum(sensor_values(1:3));
+        right_sum = sum(sensor_values(4:6));
         back_sum = sum(sensor_values(7:8));
          
         left_sum
 
-        X = K*(left_sum - ERROR_DISTANCE)
+        X = K*(sensor_values(1)+sensor_values(2) - ERROR_DISTANCE)
         left_speed = 4; 
         right_speed = 4 - X;
         wb_differential_wheels_set_speed(left_speed,right_speed);
@@ -30,17 +30,22 @@ while wb_robot_step(TIME_STEP) ~= -1
 %             break;
 %         end
         
-        if (sensor_values(1) > 850) && (sensor_values(2) == 0)   
-            %Turn left
-            wb_differential_wheels_set_speed(-2, 2)
-        end
-        
-        if (sensor_values(6) > 850) && (sensor_values(5) == 0) 
-            %Turn right
-            wb_differential_wheels_set_speed(-2, 2)
-        end
+%         if (sensor_values(1) > 850) && (sensor_values(2) == 0)   
+%             %Turn left
+%             wb_differential_wheels_set_speed(-2, 2)
+%         end
+%         
+%         if (sensor_values(6) > 850) && (sensor_values(5) == 0) 
+%             %Turn right
+%             wb_differential_wheels_set_speed(-2, 2)
+%         end
                 
-        if ((left_sum > 1750) && (front_sum == 0) && (back_sum < 1000)) || ((right_sum > 1750) && (front_sum == 0) && (back_sum < 1000)) % || (left_sum > 1950) || (right_sum > 1950)
+        if left_sum > 2000 || right_sum > 2000
+            break;
+        end
+  
+        
+        if ((left_sum > 1300) && (front_sum == 0) && (back_sum < 1000)) || ((right_sum > 1300) && (front_sum == 0) && (back_sum < 1000))  || sensor_values(5) > 980 || sensor_values(1) > 980
              sensor_values
              break;
         end
@@ -51,17 +56,17 @@ while wb_robot_step(TIME_STEP) ~= -1
      
      sensor_values = readsensor();
      front_sum = sum(sensor_values(3:4));
-     left_sum = sum(sensor_values(1:2));
-     right_sum = sum(sensor_values(5:6));
+     left_sum = sum(sensor_values(1:3));
+     right_sum = sum(sensor_values(4:6));
      back_sum = sum(sensor_values(7:8));
      
      front_sum
-     if left_sum+sensor_values(3) > right_sum+sensor_values(4)
-         left_sum+sensor_values(3)
+     if left_sum > right_sum
+         left_sum
          wb_differential_wheels_set_speed(2, -2)
          
-     elseif right_sum+sensor_values(4) > left_sum+sensor_values(3)
-         right_sum+sensor_values(4)
+     elseif right_sum > left_sum
+         right_sum
          wb_differential_wheels_set_speed(-2, 2)
          
      end
