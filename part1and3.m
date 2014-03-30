@@ -5,6 +5,9 @@
 TIME_STEP = 64;
 ERROR_DISTANCE = 400;
 K = 0.001;
+x = 0
+y = 0
+phi = 0
 
 
 while wb_robot_step(TIME_STEP) ~= -1
@@ -87,10 +90,13 @@ while wb_robot_step(TIME_STEP) ~= -1
          [x, y, phi] = odometry( x, y, phi, -2, 2);
      end
      
-     if abs(x) == 0 && abs(y) == 0 && phi ~= 0
-         
+     if abs(x) >2 && abs(y) >2 && phi ~= 0
+      
+      while 1 == 1
+          display('RETURNED HOME')
          wb_differential_wheels_set_speed(0, 0)
-        [x, y, phi] = odometry( x, y, phi, 0, 0);
+         [x, y, phi] = odometry( x, y, phi, 0, 0);
+      end
      end
 end
 
