@@ -86,6 +86,12 @@ while wb_robot_step(TIME_STEP) ~= -1
          wb_differential_wheels_set_speed(-2, 2)
          [x, y, phi] = odometry( x, y, phi, -2, 2);
      end
+     
+     if abs(x) == 0 && abs(y) == 0 && phi ~= 0
+         
+         wb_differential_wheels_set_speed(0, 0)
+        [x, y, phi] = odometry( x, y, phi, 0, 0);
+     end
 end
 
 
