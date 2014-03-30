@@ -30,6 +30,7 @@ while wb_robot_step(TIME_STEP) ~= -1
         left_speed = 4; 
         right_speed = 4 - X;
         wb_differential_wheels_set_speed(left_speed,right_speed);
+        [x, y, phi] = odometry( x, y, phi, left_speed, right_speed);
         wb_robot_step(TIME_STEP); % Is this necessary?
             
         % Catches for when the robot gets to the edge of an obstacle.
@@ -67,6 +68,7 @@ while wb_robot_step(TIME_STEP) ~= -1
     
      % stop
      wb_differential_wheels_set_speed(0, 0)
+     [x, y, phi] = odometry( x, y, phi, 0, 0);
      
      % Recalculate and store sensor values
      sensor_values = readsensor();
@@ -79,8 +81,10 @@ while wb_robot_step(TIME_STEP) ~= -1
      % Otherwise turn left
      if left_sum > right_sum
          wb_differential_wheels_set_speed(2, -2)
+         [x, y, phi] = odometry( x, y, phi, 2, -2);
      elseif right_sum > left_sum
          wb_differential_wheels_set_speed(-2, 2)
+         [x, y, phi] = odometry( x, y, phi, -2, 2);
      end
 end
 
